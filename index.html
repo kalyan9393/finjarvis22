@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#07111f"
+    >
+
+    <title>FINJARVIS - AI Finance Manager</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="topbar">
+
+        <div>
+            <p class="welcome">Welcome back 👋</p>
+            <h1>FIN<span>JARVIS</span></h1>
+        </div>
+
+        <button
+            class="notification"
+            onclick="showNotification()"
+        >
+            🔔
+        </button>
+
+    </header>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main id="mainContent">
+
+
+        <!-- ================= DASHBOARD ================= -->
+
+        <section id="dashboard" class="page active">
+
+            <div class="balance-card">
+
+                <div class="balance-top">
+                    <span>Total Balance</span>
+
+                    <button
+                        class="eye-btn"
+                        onclick="toggleBalance()"
+                    >
+                        👁
+                    </button>
+                </div>
+
+                <h2 id="totalBalance">₹0</h2>
+
+                <div class="balance-info">
+
+                    <div>
+                        <small>Income</small>
+                        <strong id="totalIncome">₹0</strong>
+                    </div>
+
+                    <div>
+                        <small>Expenses</small>
+                        <strong id="totalExpense">₹0</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUICK ACTIONS -->
+
+            <div class="quick-actions">
+
+                <button onclick="openTransactionModal('income')">
+                    <span>＋</span>
+                    Income
+                </button>
+
+                <button onclick="openTransactionModal('expense')">
+                    <span>−</span>
+                    Expense
+                </button>
+
+                <button onclick="showPage('analytics')">
+                    <span>📊</span>
+                    Analytics
+                </button>
+
+                <button onclick="showPage('ai')">
+                    <span>🤖</span>
+                    Ask AI
+                </button>
+
+            </div>
+
+
+            <!-- AI INSIGHT -->
+
+            <div class="section-heading">
+                <h2>FINJARVIS Insight</h2>
+                <button onclick="showPage('ai')">View all</button>
+            </div>
+
+            <div class="ai-card">
+
+                <div class="ai-icon">
+                    🤖
+                </div>
+
+                <div>
+                    <h3 id="dashboardInsight">
+                        Analyzing your finances...
+                    </h3>
+
+                    <p>
+                        FINJARVIS is monitoring your spending
+                        patterns and helping you manage your money.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <!-- RECENT TRANSACTIONS -->
+
+            <div class="section-heading">
+                <h2>Recent Transactions</h2>
+
+                <button onclick="showPage('transactions')">
+                    See all
+                </button>
+            </div>
+
+            <div id="recentTransactions"
+                 class="transaction-list">
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= ANALYTICS ================= -->
+
+        <section id="analytics" class="page">
+
+            <div class="page-title">
+                <h2>Analytics</h2>
+                <p>Understand where your money goes.</p>
+            </div>
+
+            <div class="analytics-card">
+
+                <h3>Monthly Overview</h3>
+
+                <div class="chart">
+
+                    <div class="bar-group">
+                        <div
+                            id="incomeBar"
+                            class="bar income-bar"
+                        ></div>
+                        <span>Income</span>
+                    </div>
+
+                    <div class="bar-group">
+                        <div
+                            id="expenseBar"
+                            class="bar expense-bar"
+                        ></div>
+                        <span>Expense</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="section-heading">
+                <h2>Spending Categories</h2>
+            </div>
+
+            <div id="categoryList"
+                 class="category-list">
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= TRANSACTIONS ================= -->
+
+        <section id="transactions" class="page">
+
+            <div class="page-title">
+
+                <h2>Transactions</h2>
+
+                <p>
+                    Track every income and expense.
+                </p>
+
+            </div>
+
+            <div id="allTransactions"
+                 class="transaction-list">
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= INVESTMENTS ================= -->
+
+        <section id="investments" class="page">
+
+            <div class="page-title">
+
+                <h2>Investments</h2>
+
+                <p>
+                    Monitor your investment portfolio.
+                </p>
+
+            </div>
+
+
+            <div class="investment-total">
+
+                <span>Portfolio Value</span>
+
+                <h2>₹2,45,800</h2>
+
+                <p class="profit">
+                    ▲ ₹18,450 (+8.12%)
+                </p>
+
+            </div>
+
+
+            <div class="investment-list">
+
+                <div class="investment">
+                    <div class="investment-icon">
+                        📈
+                    </div>
+
+                    <div>
+                        <b>Mutual Funds</b>
+                        <small>5 investments</small>
+                    </div>
+
+                    <strong>₹1,25,000</strong>
+                </div>
+
+
+                <div class="investment">
+                    <div class="investment-icon">
+                        🏦
+                    </div>
+
+                    <div>
+                        <b>Fixed Deposits</b>
+                        <small>2 accounts</small>
+                    </div>
+
+                    <strong>₹70,000</strong>
+                </div>
+
+
+                <div class="investment">
+                    <div class="investment-icon">
+                        📊
+                    </div>
+
+                    <div>
+                        <b>Stocks</b>
+                        <small>8 holdings</small>
+                    </div>
+
+                    <strong>₹50,800</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= AI ASSISTANT ================= -->
+
+        <section id="ai" class="page">
+
+            <div class="page-title">
+
+                <h2>🤖 FINJARVIS AI</h2>
+
+                <p>
+                    Your personal finance assistant.
+                </p>
+
+            </div>
+
+
+            <div class="ai-chat">
+
+                <div class="ai-message">
+
+                    <div class="chat-icon">
+                        🤖
+                    </div>
+
+                    <div>
+                        <b>FINJARVIS</b>
+
+                        <p>
+                            Hi! I'm FINJARVIS. Ask me about
+                            your spending, budget, savings,
+                            or investments.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="chatMessages"
+                    class="chat-messages">
+                </div>
+
+
+                <div class="suggestions">
+
+                    <button
+                        onclick="askAI('How much did I spend?')"
+                    >
+                        💸 My spending
+                    </button>
+
+                    <button
+                        onclick="askAI('Give me a saving tip')"
+                    >
+                        💰 Saving tip
+                    </button>
+
+                    <button
+                        onclick="askAI('Analyze my budget')"
+                    >
+                        📊 Analyze budget
+                    </button>
+
+                </div>
+
+
+                <div class="chat-input">
+
+                    <input
+                        id="aiInput"
+                        type="text"
+                        placeholder="Ask FINJARVIS..."
+                        onkeydown="handleAIEnter(event)"
+                    >
+
+                    <button onclick="sendAIMessage()">
+                        ➤
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= BOTTOM NAVIGATION ================= -->
+
+    <nav class="bottom-nav">
+
+        <button
+            class="nav-item active"
+            data-page="dashboard"
+            onclick="showPage('dashboard')"
+        >
+            <span>⌂</span>
+            <small>Home</small>
+        </button>
+
+
+        <button
+            class="nav-item"
+            data-page="analytics"
+            onclick="showPage('analytics')"
+        >
+            <span>📊</span>
+            <small>Analytics</small>
+        </button>
+
+
+        <button
+            class="add-button"
+            onclick="openTransactionModal()"
+        >
+            +
+        </button>
+
+
+        <button
+            class="nav-item"
+            data-page="investments"
+            onclick="showPage('investments')"
+        >
+            <span>📈</span>
+            <small>Invest</small>
+        </button>
+
+
+        <button
+            class="nav-item"
+            data-page="ai"
+            onclick="showPage('ai')"
+        >
+            <span>🤖</span>
+            <small>AI</small>
+        </button>
+
+    </nav>
+
+</div>
+
+
+<!-- ================= TRANSACTION MODAL ================= -->
+
+<div
+    id="transactionModal"
+    class="modal"
+>
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2>Add Transaction</h2>
+
+            <button onclick="closeTransactionModal()">
+                ×
+            </button>
+
+        </div>
+
+
+        <label>Type</label>
+
+        <div class="type-selector">
+
+            <button
+                id="incomeType"
+                class="selected"
+                onclick="selectType('income')"
+            >
+                Income
+            </button>
+
+            <button
+                id="expenseType"
+                onclick="selectType('expense')"
+            >
+                Expense
+            </button>
+
+        </div>
+
+
+        <label>Amount</label>
+
+        <input
+            id="amountInput"
+            type="number"
+            placeholder="₹0"
+        >
+
+
+        <label>Description</label>
+
+        <input
+            id="descriptionInput"
+            type="text"
+            placeholder="e.g. Grocery shopping"
+        >
+
+
+        <label>Category</label>
+
+        <select id="categoryInput">
+
+            <option>Food</option>
+            <option>Transport</option>
+            <option>Shopping</option>
+            <option>Bills</option>
+            <option>Entertainment</option>
+            <option>Salary</option>
+            <option>Investment</option>
+            <option>Other</option>
+
+        </select>
+
+
+        <button
+            class="save-btn"
+            onclick="saveTransaction()"
+        >
+            Save Transaction
+        </button>
+
+    </div>
+
+</div>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>
